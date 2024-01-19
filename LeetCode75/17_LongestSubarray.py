@@ -21,7 +21,8 @@ class Solution(object):
                 i += 1
         
         max -= 1
-        return max        
+        return max   
+         
 def main():
     test = Solution
     print(test.longestSubarray(test, [1,1,0,1]))
