@@ -8,13 +8,22 @@ class Solution:
 
 
         for i in range(l):
-            if(depth == 0):
-                stack.append(s[i])
-                depth += 1
-            else:
+            stack.append(s[i])
+            depth += 1
+
+            if(depth >= 2):
+                temp2 = stack.pop()
                 temp1 = stack.pop()
-                depth -= 1
-                temp2 = s[i]
+                depth -= 2
+
+                if(temp2 == "]"):
+                    temp2 = ""
+                    while(temp1 != "["):
+                        temp2 = temp1 + temp2
+                        temp1 = stack.pop()
+                        depth -= 1
+
+                    temp1 = stack.pop()
 
                 if(temp1.isdigit() and temp2.isdigit()):
                     temp1 += temp2
@@ -24,26 +33,16 @@ class Solution:
                     temp1 += temp2
                     stack.append(temp1)
                     depth += 1
-                elif(temp2 == "["):
-                    stack.append(temp1)
+                elif(temp1.isdigit() and temp2.isalpha()):
+                    temp2 = temp2 *int(temp1)
+                    stack.append(temp2)
                     depth += 1
-                elif(temp2 == "]"):
-                    temp2 = stack.pop()
-                    if(temp2.isdigit()):
-                        temp1 *= int(temp2)
-                    elif(temp2.isalpha):
-                        temp1 = temp2 + temp1
-                    stack.append(temp1)
                 else:
                     stack.append(temp1)
                     stack.append(temp2)
                     depth += 2
-                
 
-                #print(temp1, temp2)
-            print((stack))
-
-        return ""
+        return "".join(stack)
         
 def main():
     test = Solution
