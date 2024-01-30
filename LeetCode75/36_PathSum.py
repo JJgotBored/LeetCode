@@ -9,9 +9,9 @@ class Solution:
     def pathSum(self, root: TreeNode, targetSum: int) -> int:
         if(root == None):
             return 0
-        return self.rSearch(self, root, targetSum, 0)
+        return self.rSearch(self, root, targetSum, 0, True)
     
-    def rSearch(self, root: TreeNode, targetSum: int, currSum: int) -> int:
+    def rSearch(self, root: TreeNode, targetSum: int, currSum: int, split : True) -> int:
         if(root == None):
             return 0
         count = 0
@@ -20,11 +20,12 @@ class Solution:
             count += 1
             print(currSum, root.val)
         
-        count += self.rSearch(self, root.left, targetSum, currSum +root.val)
-        count += self.rSearch(self, root.left, targetSum, 0)
-        count += self.rSearch(self, root.right, targetSum, currSum + root.val)
-        count += self.rSearch(self, root.right, targetSum, 0)
+        count += self.rSearch(self, root.left, targetSum, currSum +root.val, split)
+        count += self.rSearch(self, root.right, targetSum, currSum + root.val, split)
 
+        if(split == True):
+            count += self.rSearch(self, root.right, targetSum, 0, False)
+            count += self.rSearch(self, root.left, targetSum, 0, False)
         return count
 
 
