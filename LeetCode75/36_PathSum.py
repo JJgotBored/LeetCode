@@ -16,15 +16,14 @@ class Solution:
             return 0
         count = 0
 
-        if(currSum + root.val == targetSum):
+        if((currSum + root.val) == targetSum):
             count += 1
-        elif(root.val == targetSum):
-            count += 1
-
+            print(currSum, root.val)
+        
         count += self.rSearch(self, root.left, targetSum, currSum +root.val)
-        count += self.rSearch(self, root.left, targetSum, root.val)
+        count += self.rSearch(self, root.left, targetSum, 0)
         count += self.rSearch(self, root.right, targetSum, currSum + root.val)
-        count += self.rSearch(self, root.right, targetSum, root.val)
+        count += self.rSearch(self, root.right, targetSum, 0)
 
         return count
 
@@ -61,10 +60,10 @@ def printTree(root: TreeNode):
 
 
 def main():
-    vals = [1,2,5]
+    vals = [1,None,2,None,None,None,3,None,None,None,None,None,None,None,4,None,None,None,None,None,None,None,None,None,None,None,None,None,None,None,5]
     root = setup(vals)
     test = Solution
-    print(test.pathSum(test, root, 5))
+    print(test.pathSum(test, root, 3))
     #printTree(root)
 
 if(__name__ == "__main__"):

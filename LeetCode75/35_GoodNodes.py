@@ -60,11 +60,11 @@ def printTree(root: TreeNode):
 
 
 def main():
-    vals = [1]
+    vals = [1,2,3]
     root = setup(vals)
     test = Solution
     print(test.goodNodes(test, root))
-    #printTree(root)
+    printTree(root)
 
 if(__name__ == "__main__"):
     main()
