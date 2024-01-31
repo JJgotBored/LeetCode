@@ -8,10 +8,23 @@ class Solution:
     def longestZigZag(self, root: TreeNode) -> int:
         if(root == None):
             return 0
-        maxDepth = self.getMaxDepth(self, root)
-        #print(self.searchNodes(self, root, 0,maxDepth, 0))
-        return self.searchNodes(self, root, 0,maxDepth, 0)
+        
+        return self.rSearch(root, -1, 0)
     
+    def rSearch(self, root: TreeNode, dir: int, currLen: int) -> int:
+        if(root == None):
+            return 0
+        maxLen = 0
+        if(dir == 0):
+            maxLen = max(self.rSearch(root.left,0,1),currLen +self.rSearch(root.right,1, currLen))
+        elif(dir == 1):
+            maxLen = max(currLen + self.rSearch(root.left,0,currLen),self.rSearch(root.right,1,1))
+        else:
+            maxLen = max(self.rSearch(root.left,0,1), self.rSearch(root.right,1,1))
+        
+        print(maxLen)
+        return maxLen
+    """
     def getMaxDepth(self, root: TreeNode) -> int :
         if(root == None):
             return 0
@@ -39,7 +52,7 @@ class Solution:
         if(root == None):
             return 0
         return self.left(self, root.left) +1
-    
+    """
 #### Testing Functions #####
 def setup(vals: list)->TreeNode:
     if(vals == []):
@@ -73,12 +86,13 @@ def printTree(root: TreeNode):
 def main():
     #vals = [1, 1,1, None,1,None,None, None,None,1,1,None,None,None,None, None,None,None,None,None,1]
     #vals = [1]
-    vals = [1, None,1, None,None,1,1, None,None,None,None,None,None,1,1, None,None,None,None,None,None,None,None,None,None,None,None,None,1,None,None,
-             None,None,None,None,None,None,None,None,None,None,None,None,None,None,None,None,None,None,None,None,None,None,None,None,None,None,None,1,None,None,None,None]
+    vals = [1,1,1,None,1,None,None]
+    #vals = [1, None,1, None,None,1,1, None,None,None,None,None,None,1,1, None,None,None,None,None,None,None,None,None,None,None,None,None,1,None,None,
+    #         None,None,None,None,None,None,None,None,None,None,None,None,None,None,None,None,None,None,None,None,None,None,None,None,None,None,None,1,None,None,None,None]
     root = setup(vals)
     #printTree(root)
-    test = Solution
-    print(test.longestZigZag(test, root))
+    test = Solution()
+    print(test.longestZigZag(root))
 
 if(__name__ == "__main__"):
     main()
