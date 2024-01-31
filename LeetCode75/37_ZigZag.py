@@ -8,8 +8,27 @@ class Solution:
     def longestZigZag(self, root: TreeNode) -> int:
         if(root == None):
             return 0
-        currMax = max(self.left(self, root.left), self.right(self, root.right))
-        return max(currMax, self.longestZigZag(self, root.left), self.longestZigZag(self, root.right))
+        maxDepth = self.getMaxDepth(self, root)
+        #print(self.searchNodes(self, root, 0,maxDepth, 0))
+        return self.searchNodes(self, root, 0,maxDepth, 0)
+    
+    def getMaxDepth(self, root: TreeNode) -> int :
+        if(root == None):
+            return 0
+        
+        return max(self.getMaxDepth(self, root.left), self.getMaxDepth(self, root.right)) +1
+    
+    def searchNodes(self, root: TreeNode, currDepth: int, maxDepth: int, longestPath: int):
+        if(root == None):
+            return 0
+        if(maxDepth - currDepth <= longestPath):
+            print("Pruned")
+            return 0
+        longestPath = max(longestPath, self.left(self, root.left), self.right(self, root.right))
+
+        
+        return max(longestPath, self.searchNodes(self, root.left, currDepth+1, maxDepth, longestPath), 
+                                self.searchNodes(self, root.right, currDepth+1, maxDepth, longestPath))
 
     def left(self, root: TreeNode) -> int:
         if(root == None):
@@ -52,8 +71,10 @@ def printTree(root: TreeNode):
     return
 
 def main():
-    vals = [1, 1,1, None,1,None,None, None,None,1,1,None,None,None,None, None,None,None,None,None,1]
+    #vals = [1, 1,1, None,1,None,None, None,None,1,1,None,None,None,None, None,None,None,None,None,1]
     #vals = [1]
+    vals = [1, None,1, None,None,1,1, None,None,None,None,None,None,1,1, None,None,None,None,None,None,None,None,None,None,None,None,None,1,None,None,
+             None,None,None,None,None,None,None,None,None,None,None,None,None,None,None,None,None,None,None,None,None,None,None,None,None,None,None,1,None,None,None,None]
     root = setup(vals)
     #printTree(root)
     test = Solution
