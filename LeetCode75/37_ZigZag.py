@@ -13,46 +13,18 @@ class Solution:
     
     def rSearch(self, root: TreeNode, dir: int, currLen: int) -> int:
         if(root == None):
-            return 0
+            return currLen -1
         maxLen = 0
         if(dir == 0):
-            maxLen = max(self.rSearch(root.left,0,1),currLen +self.rSearch(root.right,1, currLen))
+            maxLen = max(self.rSearch(root.left,0,1),self.rSearch(root.right,1, currLen+1))
         elif(dir == 1):
-            maxLen = max(currLen + self.rSearch(root.left,0,currLen),self.rSearch(root.right,1,1))
+            maxLen = max(self.rSearch(root.left,0,currLen+1),self.rSearch(root.right,1,1))
         else:
             maxLen = max(self.rSearch(root.left,0,1), self.rSearch(root.right,1,1))
         
-        print(maxLen)
+        #print(maxLen)
         return maxLen
-    """
-    def getMaxDepth(self, root: TreeNode) -> int :
-        if(root == None):
-            return 0
-        
-        return max(self.getMaxDepth(self, root.left), self.getMaxDepth(self, root.right)) +1
-    
-    def searchNodes(self, root: TreeNode, currDepth: int, maxDepth: int, longestPath: int):
-        if(root == None):
-            return 0
-        if(maxDepth - currDepth <= longestPath):
-            print("Pruned")
-            return 0
-        longestPath = max(longestPath, self.left(self, root.left), self.right(self, root.right))
-
-        
-        return max(longestPath, self.searchNodes(self, root.left, currDepth+1, maxDepth, longestPath), 
-                                self.searchNodes(self, root.right, currDepth+1, maxDepth, longestPath))
-
-    def left(self, root: TreeNode) -> int:
-        if(root == None):
-            return 0
-        return self.right(self, root.right) +1
-    
-    def right(self, root: TreeNode) ->int:
-        if(root == None):
-            return 0
-        return self.left(self, root.left) +1
-    """
+   
 #### Testing Functions #####
 def setup(vals: list)->TreeNode:
     if(vals == []):
@@ -84,9 +56,10 @@ def printTree(root: TreeNode):
     return
 
 def main():
-    #vals = [1, 1,1, None,1,None,None, None,None,1,1,None,None,None,None, None,None,None,None,None,1]
+    #vals = [1, None, 1]
+    vals = [1, 1,1, None,1,None,None, None,None,1,1,None,None,None,None, None,None,None,None,None,1]
     #vals = [1]
-    vals = [1,1,1,None,1,None,None]
+    #vals = [1,1,1,None,1,None,None]
     #vals = [1, None,1, None,None,1,1, None,None,None,None,None,None,1,1, None,None,None,None,None,None,None,None,None,None,None,None,None,1,None,None,
     #         None,None,None,None,None,None,None,None,None,None,None,None,None,None,None,None,None,None,None,None,None,None,None,None,None,None,None,1,None,None,None,None]
     root = setup(vals)
