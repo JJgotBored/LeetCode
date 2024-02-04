@@ -7,45 +7,22 @@ class TreeNode:
 
 class Solution:
     def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
-        pFound = False
-        qFound = False
-
+        self.rSearch(root,p.val, q.val)
+        
+        return None
+    
+    def rSearch(self, root: TreeNode, p, q) -> TreeNode:
         if(root == None):
             return None
-        elif(root.val == p.val):
-            pFound = True
-        elif(root.val == q.val):
-            qFound = True
         print(root.val)
-        
-        left = self.lowestCommonAncestor(root.left, p, q)
-        right = self.lowestCommonAncestor(root.right, p, q)
+        left = self.rSearch(root.left, p, q)
 
-        if(left != None):
-            if(left.val == p.val):
-                pFound = True
-            elif(left.val == q.val):
-                qFound = True
-            else:
-                return left
+        right = self.rSearch(root.right,p,q)
 
-        if(right != None):
-            if(right.val == p.val):
-                pFound = True
-            elif(right.val == q.val):
-                qFound = True
-            else:
-                return right
-
-        print(pFound, qFound)
-
-        if(pFound == True and qFound == True):
+        if(root.val == p):
             return root
-        elif(left != None):
-            return left
-        elif(right != None):
-            return right
-        
+        elif(root.val == q):
+            return root
         return None
 
 #### Testing Functions #####
