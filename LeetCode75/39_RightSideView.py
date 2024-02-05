@@ -8,8 +8,10 @@ class Solution:
     def rightSideView(self, root: TreeNode) -> list[int]:
         if(root == None):
             return []
-        lst = [root.val] + self.rightSideView(root.right)
-
+        
+        left = self.rightSideView(root.left)
+        right = self.rightSideView(root.right)
+        lst = [root.val] + right + left[len(right):len(left)]
         return lst
     
 
@@ -49,9 +51,10 @@ def printTree(root: TreeNode):
     return
 
 def main():
-    #vals = [1,2,3,None,5,None,4]
-    #vals = [1,None,3 ]
-    vals = []
+    vals = [1,2,3,None,5,None,4]
+    vals = [1,None,3 ]
+    #vals = []
+    vals = [1,2]
     root = buildTree(vals)
     #printTree(root)
     test = Solution()
