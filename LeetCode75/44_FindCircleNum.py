@@ -12,7 +12,7 @@ class Solution:
 
         for i in range(n):
             if(visited[i] == False):
-                self.rSearch(isConnected, 0,visited, n)
+                self.rSearch(isConnected, i,visited, n)
                 provinces += 1
 
         return provinces
