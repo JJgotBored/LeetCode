@@ -15,6 +15,10 @@ class Solution:
 
         return 0
     
+    def rSearch(self, n: int, depth: int, connections: list[list[int]])-> int:
+
+        return 0
+
 def main():
     n = 6
     connections = [[0,1],[1,3],[2,3],[4,0],[4,5]]
