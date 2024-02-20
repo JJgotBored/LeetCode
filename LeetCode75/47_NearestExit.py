@@ -4,20 +4,26 @@ class Solution:
         
         h = len(maze)
         l = len(maze[0])
+        exits = []
         print(maze)
         for i in range(h):
             for j in range(l):
                 if(maze[i][j] == '.'):
                     if(i == 0):
                         maze[i][j] = 'E'
+                        exits.append([i,j])
                     elif(i == h-1):
                         maze[i][j] = 'E'
+                        exits.append([i,j])
                     elif(j == 0):
                         maze[i][j] = 'E'
+                        exits.append([i,j])
                     elif(j == l-1):
                         maze[i][j] = 'E'
+                        exits.append([i,j])
 
         print(maze)
+        print(exits)
         return 0
     
 def main():
