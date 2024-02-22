@@ -1,5 +1,9 @@
 class Solution:
     def findKthLargest(self, nums: list[int], k: int) -> int:
+        queue = []
+        qLen = 0
+        
+        
         return 0
     
 def main():
