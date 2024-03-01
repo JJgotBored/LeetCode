@@ -1,4 +1,5 @@
 class Solution:
+
     def maxScore(self, nums1: list[int], nums2: list[int], k: int) -> int:
         l = len(nums1)
         pairs = []
@@ -9,26 +10,28 @@ class Solution:
 
         for i in range(l):
             pairs.append([nums2[i], nums1[i]])  
-        pairs.sort()
-
+        pairs.sort(reverse = True)
+        print(pairs)
+        
         for i in pairs:
             subset.append(i)
             curSum += i[1]
 
             if(len(subset) > k):
-                index = 0
-                tempMax = (curSum - subset[0][1])* subset[1][0]
+                index = k
+                tempMax = (curSum - subset[k][1])* subset[k-1][0]
                 print(subset)
-                for j in range(1, k+1):
+                
+                for j in range(0, k):
                     print(j)
-                    if(tempMax < (curSum - subset[j][1])*subset[0][0]):
-                        tempMax = (curSum - subset[j][1])*subset[0][0]
+                    if(tempMax < (curSum - subset[j][1])*subset[k][0]):
+                        tempMax = (curSum - subset[j][1])*subset[k][0]
                         index = j
                 curSum -= subset[index][1]
                 subset.pop(index)
-
+        
         print(subset)
-        return curSum * subset[0][0]
+        return curSum * subset[k-1][0]
 
 def main():
     #nums1 = [1,3,3,2]
