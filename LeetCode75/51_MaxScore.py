@@ -1,3 +1,5 @@
+import heapq
+
 class Solution:
 
     def maxScore(self, nums1: list[int], nums2: list[int], k: int) -> int:
@@ -5,9 +7,7 @@ class Solution:
         pairs = []
         subset = []
         curSum = 0
-        sum = 0
-        tempMax = 0
-        index = 0
+        curMin = 1000001
         answer = -1
 
         for i in range(l):
@@ -15,39 +15,27 @@ class Solution:
         pairs.sort(reverse = True)
         #print(pairs)
         
-        for i in range(k-1):
-            subset.append(pairs[i])
-            sum += pairs[i][1]
+        heapq.heapify(subset)
+
+        #fills queue to size k 
+        for i in range(k):
+            heapq.heappush(subset, pairs[i][1])
+            curSum += pairs[i][1]
+            curMin = min(curMin, pairs[i][0])
         
-        for i in range(k-1, l):
+        answer = max(answer, curSum * curMin)
+
+        for i in range(k, l):
             #print(i)
-            curSum = pairs[i][1] + sum
-            answer = max(answer, curSum*pairs[i][0])
+            temp = heapq.heappop(subset)
+            curSum -= temp
 
-            if( k > 1 and pairs[i][1] > subset[k-2][1]):
-                sum -= subset[k-2][1]
-                subset.pop()
-                sum += pairs[i][1]
-                subset.append(pairs[i])
+            heapq.heappush(subset, pairs[i][1])
+            curMin = min(curMin, pairs[i][0])
+            curSum += pairs[i][1]
 
-        """
-        for i in pairs:
-            subset.append(i)
-            curSum += i[1]
-
-            if(len(subset) > k):
-                index = k
-                tempMax = (curSum - subset[k][1])* subset[k-1][0]
-                print(subset)
-                
-                for j in range(0, k):
-                    print(j)
-                    if(tempMax < (curSum - subset[j][1])*subset[k][0]):
-                        tempMax = (curSum - subset[j][1])*subset[k][0]
-                        index = j
-                curSum -= subset[index][1]
-                subset.pop(index)
-        """
+            answer = max(answer, curSum*curMin)
+          
         #print(subset)
         return answer
 
