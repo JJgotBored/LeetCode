@@ -18,11 +18,6 @@ class Solution:
                 heapq.heappush(pool1, pairs.pop(0))
             if(pairs != []):
                 heapq.heappush(pool2, pairs.pop())
-
-        
-        #pool1.sort()
-        #pool2.sort()
-        #pairs.sort(reverse = True)
                 
         for i in range(k):
             if(len(pool1) > 0 and len(pool2) > 0):
@@ -56,9 +51,8 @@ class Solution:
                 curSum += pool2[0][0]
                 heapq.heappop(pool2)
 
-        print(pool1)
-        print(pool2)
-
+        #print(pool1)
+        #print(pool2)
 
         return curSum
     
