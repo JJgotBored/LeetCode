@@ -11,13 +11,13 @@ class Solution:
     def recSum(self, maxDepth: int, curDepth: int, maxSum: int, curSum: int, combo: list[int], used: dict, out: list[list[int]]):
         if(curDepth == maxDepth ):
             if(curSum == maxSum):
-                out.append(combo)
+                out.append(combo[:])
                 print(combo)
             return
         elif(curSum >= maxSum):
             return
 
-        for i in range(1,10):
+        for i in range(curDepth + 1,10):
             if(used[i] == 0):
                 combo.append(i)
                 curSum += i
@@ -31,7 +31,7 @@ class Solution:
     
 def main():
     k = 3
-    n = 7
+    n = 9
     test = Solution()
     print(test.combinationSum3(k, n))
 
