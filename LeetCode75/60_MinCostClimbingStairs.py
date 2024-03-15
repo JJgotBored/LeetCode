@@ -4,14 +4,10 @@ class Solution:
         minCost = [1000]*n
 
         for i in range(n):
-            if(i == 0 or i == 1):
-                minCost[i] = min(minCost[i], 0 + cost[i])
-
-            if(i < n-2):
-                minCost[i+1] = min(minCost[i+1], minCost[i] + cost[i+1])
-                minCost[i+2] = min(minCost[i+2] ,minCost[i] + cost[i+2])
-            elif(i < n-1):
-                minCost[i+1] = min(minCost[i+1], minCost[i] + cost[i+1])
+            if(i < 2):
+                minCost[i] = cost[i]
+            else:
+                minCost[i] = min(minCost[i-1], minCost[i-2]) + cost[i]
 
         #print(minCost)
         return min(minCost[n-1], minCost[n-2])
