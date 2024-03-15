@@ -1,9 +1,24 @@
 class Solution:
     def minCostClimbingStairs(self, cost: list[int]) -> int:
-        return 0
+        n = len(cost)
+        minCost = [1000]*n
+
+        for i in range(n):
+            if(i == 0 or i == 1):
+                minCost[i] = min(minCost[i], 0 + cost[i])
+
+            if(i < n-2):
+                minCost[i+1] = min(minCost[i+1], minCost[i] + cost[i+1])
+                minCost[i+2] = min(minCost[i+2] ,minCost[i] + cost[i+2])
+            elif(i < n-1):
+                minCost[i+1] = min(minCost[i+1], minCost[i] + cost[i+1])
+
+        #print(minCost)
+        return min(minCost[n-1], minCost[n-2])
     
 def main():
-    cost = []
+    #cost = [10,15,20]
+    cost = [1,100,1,1,1,100,1,1,100,1]
     test = Solution()
     print(test.minCostClimbingStairs(cost))
 if(__name__ == "__main__"):
