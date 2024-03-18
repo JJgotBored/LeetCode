@@ -1,6 +1,7 @@
 class Solution:
     def numTilings(self, n: int) -> int:
         i = 1
+        mod = pow(10, 9) + 7
         a = 1
         b = 1
         c = 0
@@ -9,7 +10,7 @@ class Solution:
             d = c
             c = b
             b = a
-            a = 2 * b + d
+            a = (2 * b + d) % mod
             #print(a, b, c, d)
             i += 1
         return a
