@@ -5,8 +5,8 @@ class Solution:
 
         value = [[0 for i in range(n)] for j in range(n)]
         for i in range(n):
-            value[0][i] = -2 - prices[0] + prices[i]
-            value[1][i] = -2 - prices[1] + prices[i]
+            value[0][i] =  prices[i] - prices[0] - fee
+            value[1][i] =  prices[i] - prices[1] - fee
 
         value[0][0] = 0
         value[1][0] = 0
