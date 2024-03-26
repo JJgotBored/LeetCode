@@ -6,16 +6,16 @@ class Solution:
         value = [[0 for i in range(n)] for j in range(n)]
         for i in range(n):
             value[0][i] =  prices[i] - prices[0] - fee
-            value[1][i] =  prices[i] - prices[1] - fee
+            #value[1][i] =  prices[i] - prices[1] - fee
 
         value[0][0] = 0
-        value[1][0] = 0
-        value[1][1] = 0
+        #value[1][0] = 0
+        #value[1][1] = 0
 
-        #for i in range(n):
-        #    for j in range(n):
-        #        if(holding == 0):
-
+        for i in range(1,n):
+            for j in range(i,n):
+                if(holding == 0):
+                    value[i][j] = prices[j] - prices[i] - fee 
 
         print(value)
 
