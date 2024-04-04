@@ -15,10 +15,23 @@ class Solution:
         n2 = len(word2)
         maxActions = max(n1,n2)
         shared = 0
+        dels = 0
+        ins = 0
+        swts = 0
+
+        if(n1 < n2):
+            swts = n1
+            ins = n2 - n1
+        elif(n1 > n2):
+            swts = n2
+            dels = n1-n2
+        else:
+            swts = n1
+
         for i in range(n1):
             print(word1[i])
 
-        return maxActions - shared
+        return min(maxActions, swts + dels + ins)
     
 def main():
     test = Solution()
