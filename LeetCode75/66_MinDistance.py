@@ -3,12 +3,22 @@ class Solution:
     case 1:
         n1 > n2
         deletes are least costly as switch does not shorten and instert will require an additional delete
+        delete costs 1 action
+        switch costs 2 actions
+        insert costs 3 actions
     case 2:
         n1 == n2
         switches are least costly as an insert will require a delete and vice versa
+        insert and delete are only worth while if they shift what would other wise require 3 or more switches
+        switch costs 1 action
+        delete costs 2 actions
+        insert costs 2 actions  
     case 3:
         n1 < n2
         inserts are least costly as switch does not increase length and deletes will require aditional insert
+        insert costs 1 action
+        switch costs 2 actions
+        delete costs 3 actions
     """
     def minDistance(self, word1: str, word2: str) -> int:
         n1 = len(word1)
