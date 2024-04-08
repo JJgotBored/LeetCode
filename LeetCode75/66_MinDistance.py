@@ -24,24 +24,27 @@ class Solution:
         n1 = len(word1)
         n2 = len(word2)
         maxActions = max(n1,n2)
-        shared = 0
-        dels = 0
-        ins = 0
-        swts = 0
+        
+        if(word1 == "" or word2 == ""):
+            return maxActions
+        
+        arr1 = [500 for i in range(maxActions)]
+        arr2 = [500 for i in range(maxActions)]
 
-        if(n1 < n2):
-            swts = n1
-            ins = n2 - n1
-        elif(n1 > n2):
-            swts = n2
-            dels = n1-n2
+        if(word1[0] == word2[0]):
+            arr1[0] = 0
         else:
-            swts = n1
+            arr1[0] = 1
 
+        """
         for i in range(n1):
-            print(word1[i])
+            for j in range(n2):
+        """
 
-        return min(maxActions, swts + dels + ins)
+        print(arr1)
+        print(arr2)
+
+        return maxActions
     
 def main():
     test = Solution()
