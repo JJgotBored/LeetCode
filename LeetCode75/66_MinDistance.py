@@ -37,12 +37,14 @@ class Solution:
             arr1[0] = 1
 
         for i in range(n1):
-            arr1[i] = 2
+            arr2[i] = i+1
 
-        """
-        for i in range(n1):
+        
+        for i in range(1,n1):
             for j in range(n2):
-        """
+                if(word1[i] == word2[j]):
+                    arr1[j] = arr1[j-1]
+
 
         print(arr1)
         print(arr2)
