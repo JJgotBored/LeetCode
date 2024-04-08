@@ -36,6 +36,9 @@ class Solution:
         else:
             arr1[0] = 1
 
+        for i in range(n1):
+            arr1[i] = 2
+
         """
         for i in range(n1):
             for j in range(n2):
