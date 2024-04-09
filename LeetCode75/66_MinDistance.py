@@ -28,33 +28,38 @@ class Solution:
         if(word1 == "" or word2 == ""):
             return maxActions
         
-        arr1 = [500 for i in range(maxActions)]
-        arr2 = [500 for i in range(maxActions)]
+        arr1 = [500 for i in range(maxActions+1)]
+        arr2 = [i for i in range(maxActions+1)]
 
         if(word1[0] == word2[0]):
             arr1[0] = 0
         else:
             arr1[0] = 1
 
-        for i in range(n1):
-            arr2[i] = i+1
-
         
-        for i in range(1,n1):
-            for j in range(n2):
-                if(word1[i] == word2[j]):
-                    arr1[j] = arr1[j-1]
+        for i in range(1,n1+1):
+            for j in range(1, n2+1):
+                if(word1[i-1] == word2[j-1]):
+                    arr1[j] = arr2[j-1]
+                else:
+                    arr1[j] = min(arr1[j-1], arr2[j-1], arr2[j]) +1
+            print(arr2)
+            arr2 = arr1[:]
 
+        #print(arr2)
+        #print(arr1)
 
-        print(arr1)
-        print(arr2)
-
-        return maxActions
+        return arr2[n2]
     
 def main():
     test = Solution()
-    word1 = "horse"
-    word2 = "ros"
+    #word1 = "horse"
+    #word1 = "intention"
+    word1 = "dinitrophenylhydrazine"
+
+    #word2 = "ros"
+    word2 = "execution"
+    word2 = "dimethylhydrazine"
 
     print(test.minDistance(word1, word2))
 
