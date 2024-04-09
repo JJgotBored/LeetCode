@@ -39,16 +39,17 @@ class Solution:
         i = 0
 
         for i in range(1,n1+1):
+            arr1[0] = i
             for j in range(1, n2+1):
                 if(word1[i-1] == word2[j-1]):
                     arr1[j] = arr2[j-1]
                 else:
                     arr1[j] = min(arr1[j-1], arr2[j-1], arr2[j]) +1
-            print(i-2,"\t", arr2)
+            #print(i-2,"\t", arr2)
             arr2 = arr1[:]
-            arr1[0] = i
+            
 
-        print(i-1,"\t", arr2)
+        #print(i-1,"\t", arr2)
         #print(arr2)
         #print(arr1)
 
