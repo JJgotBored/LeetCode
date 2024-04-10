@@ -1,12 +1,12 @@
 class Solution:
     def minFlips(self, a: int, b: int, c: int) -> int:
-        return 0
+        return abs(a + b -c)
     
 def main():
     test = Solution()
-    a = 0
-    b = 0
-    c = 0
+    a = 2
+    b = 6
+    c = 5
 
     print(test.minFlips(a,b,c))
 
