@@ -1,6 +1,22 @@
 class Solution:
     def minFlips(self, a: int, b: int, c: int) -> int:
-        return abs(a + b -c)
+        aTemp = 0
+        bTemp = 0
+        cTemp = 0
+        count = 0
+        while((a + b + c) > 0):
+            aTemp = a%2
+            bTemp = b%2
+            cTemp = c%2
+            a = a//2
+            b = b//2
+            c = c//2
+
+            if(cTemp == 0):
+                count = count + aTemp + bTemp
+            else:
+                count += min(1 - aTemp, 1 - bTemp)
+        return count
     
 def main():
     test = Solution()
