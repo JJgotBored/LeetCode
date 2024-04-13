@@ -1,20 +1,23 @@
 class Trie:
 
     def __init__(self):
-        self.words = []
+        #self.words = []
         return
 
     def insert(self, word: str) -> None:
-        self.words.append(word)
+        #self.words.append(word)
         return
 
     def search(self, word: str) -> bool:
+        """
         for i in self.words:
             if(i == word):
                 return True
+        """
         return False
 
     def startsWith(self, prefix: str) -> bool:
+        """
         n = len(prefix)
         for i in self.words:
             if(n <= len(i)):
@@ -23,6 +26,7 @@ class Trie:
                         break
                     elif(j == n-1):
                         return True
+        """            
         return False
 
 
