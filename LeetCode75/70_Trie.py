@@ -1,3 +1,8 @@
+class TrieNode:
+    def __init__(self):
+        self.children = [None for i in range(26)]
+        self.endOfWord = False
+
 class Trie:
 
     def __init__(self):
