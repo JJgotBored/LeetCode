@@ -6,11 +6,20 @@ class TrieNode:
 class Trie:
 
     def __init__(self):
-        #self.words = []
+        self.root = TrieNode()
         return
 
     def insert(self, word: str) -> None:
-        #self.words.append(word)
+        temp = self.root
+        j = 0
+        for i in (word):
+            j = ord(i) -97
+            if(temp.children[j] == None):
+                temp.children[j] = TrieNode()
+            temp = temp.children[j]
+        
+        temp.endOfWord = True
+
         return
 
     def search(self, word: str) -> bool:
@@ -40,3 +49,11 @@ class Trie:
 # obj.insert(word)
 # param_2 = obj.search(word)
 # param_3 = obj.startsWith(prefix)
+
+def main():
+    test = Trie()
+    test.insert("word")
+    #print(test.root.children)
+
+if(__name__ == "__main__"):
+    main()
