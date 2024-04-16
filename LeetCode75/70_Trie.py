@@ -23,24 +23,29 @@ class Trie:
         return
 
     def search(self, word: str) -> bool:
-        """
-        for i in self.words:
-            if(i == word):
-                return True
-        """
+        temp = self.root
+        j = 0
+        for i in word:
+            j = ord(i)-97
+            if(temp.children[j] == None):
+                return False
+            else:
+                temp = temp.children[j] 
+
+        if(temp.endOfWord == True):
+            return True
+         
         return False
 
     def startsWith(self, prefix: str) -> bool:
-        """
-        n = len(prefix)
-        for i in self.words:
-            if(n <= len(i)):
-                for j in range(n):
-                    if (prefix[j] != i[j]):
-                        break
-                    elif(j == n-1):
-                        return True
-        """            
+        temp = self.root
+        j = 0
+        for i in prefix:
+            j = ord(i)-97
+            if(temp.children[j] == None):
+                return False
+            else:
+                temp = temp.children[j]     
         return False
 
 
