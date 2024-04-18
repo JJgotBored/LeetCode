@@ -54,6 +54,13 @@ class Trie:
 # obj.insert(word)
 # param_2 = obj.search(word)
 # param_3 = obj.startsWith(prefix)
+def printTrie(root: Trie):
+    printTrieNode(root.root)
+    return
+
+def printTrieNode(root: TrieNode):
+
+    return
 
 def main():
     test = Trie()
