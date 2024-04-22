@@ -23,6 +23,11 @@ class Trie:
 
 class Solution:
     def suggestedProducts(self, products: list[str], searchWord: str) -> list[list[str]]:
+        root = Trie()
+        for i in products:
+            root.insert(i)
+
+        printTrie(root)
         return None
 
 #******************************************
@@ -40,15 +45,16 @@ def printTrieNode(root: TrieNode, curr: str):
     return
 
 def main():
-    print("main")
+    #print("main")
     test = Solution()
-    root = Trie()
-    root.insert("word")
-    root.insert("worst")
-    root.insert("wanted")
-    printTrie(root)
-    products = []
+    #root = Trie()
+    #root.insert("word")
+    #root.insert("worst")
+    #root.insert("wanted")
+    #printTrie(root)
+    products = ["word", "worst", "wanted"]
     search = ""
+    print(test.suggestedProducts(products, search))
 
 if(__name__ == "__main__"):
     main()
