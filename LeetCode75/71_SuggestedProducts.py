@@ -20,6 +20,17 @@ class Trie:
         temp.endOfWord = True
 
         return
+    
+    def startsWith(self, prefix: str) -> bool:
+        temp = self.root
+        j = 0
+        for i in prefix:
+            j = ord(i)-97
+            if(temp.children[j] == None):
+                return False
+            else:
+                temp = temp.children[j]     
+        return True
 
 class Solution:
     def suggestedProducts(self, products: list[str], searchWord: str) -> list[list[str]]:
