@@ -21,7 +21,7 @@ class Trie:
 
         return
     
-    def startsWith(self, prefix: str) -> bool:
+    def searchPrefix(self, prefix: str) -> bool:
         temp = self.root
         j = 0
         for i in prefix:
