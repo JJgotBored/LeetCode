@@ -21,16 +21,18 @@ class Trie:
 
         return
     
-    def searchPrefix(self, prefix: str) -> bool:
+    def searchPrefix(self, prefix: str) -> list[str]:
+        output = [] 
         temp = self.root
         j = 0
+
         for i in prefix:
             j = ord(i)-97
             if(temp.children[j] == None):
-                return False
+                return output
             else:
                 temp = temp.children[j]     
-        return True
+        return output
 
 class Solution:
     def suggestedProducts(self, products: list[str], searchWord: str) -> list[list[str]]:
