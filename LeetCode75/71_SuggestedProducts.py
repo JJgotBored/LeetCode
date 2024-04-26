@@ -31,7 +31,10 @@ class Trie:
             if(temp.children[j] == None):
                 return output
             else:
-                temp = temp.children[j]     
+                temp = temp.children[j]
+
+        if(temp.endOfWord == True):
+            output.append(prefix)     
         return output
 
 class Solution:
@@ -41,7 +44,7 @@ class Solution:
             root.insert(i)
 
         printTrie(root)
-        return None
+        return root.searchPrefix(searchWord)
 
 #******************************************
 #           Testing Below
@@ -66,7 +69,7 @@ def main():
     #root.insert("wanted")
     #printTrie(root)
     products = ["word", "worst", "wanted"]
-    search = ""
+    search = "word"
     print(test.suggestedProducts(products, search))
 
 if(__name__ == "__main__"):
