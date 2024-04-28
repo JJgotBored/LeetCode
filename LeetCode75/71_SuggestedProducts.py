@@ -21,8 +21,7 @@ class Trie:
 
         return
     
-    def searchPrefix(self, prefix: str) -> list[str]:
-        output = [] 
+    def searchPrefix(self, prefix: str, currStr: str, output: list[str]) -> list[str]:
         temp = self.root
         j = 0
 
@@ -44,8 +43,25 @@ class Solution:
             root.insert(i)
 
         printTrie(root)
-        return root.searchPrefix(searchWord)
+        return self.recSearch(root.root, searchWord, "",[])
+    
+    def recSearch(self, root: TrieNode, search: str, curStr: str, output: list[str])->list[str]:
+        index = 0
+        if(len(search) > 0):
+            index = ord(search[0])-97
 
+            if(root.children[index] != None):
+                return self.recSearch(root.children[index], search[1:], curStr + search[0], output)
+            else:
+                return output
+        else:
+            if(root.endOfWord):
+                output.append(curStr)
+
+            for i in range(len(root.children)):
+                if(root.children[i] != None):
+                    return self.recSearch(root.children[i], search, curStr + chr(i+97), output)
+        return output
 #******************************************
 #           Testing Below
 #******************************************
@@ -68,8 +84,8 @@ def main():
     #root.insert("worst")
     #root.insert("wanted")
     #printTrie(root)
-    products = ["word", "worst", "wanted"]
-    search = "word"
+    products = ["word", "worst", "wanted", "wording"]
+    search = "wor"
     print(test.suggestedProducts(products, search))
 
 if(__name__ == "__main__"):
