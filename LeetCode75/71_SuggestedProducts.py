@@ -21,32 +21,23 @@ class Trie:
 
         return
     
-    def searchPrefix(self, prefix: str, currStr: str, output: list[str]) -> list[str]:
-        temp = self.root
-        j = 0
-
-        for i in prefix:
-            j = ord(i)-97
-            if(temp.children[j] == None):
-                return output
-            else:
-                temp = temp.children[j]
-
-        if(temp.endOfWord == True):
-            output.append(prefix)     
-        return output
 
 class Solution:
     def suggestedProducts(self, products: list[str], searchWord: str) -> list[list[str]]:
         root = Trie()
+        output = []
         for i in products:
             root.insert(i)
 
-        printTrie(root)
-        return self.recSearch(root.root, searchWord, "",[])
+        #printTrie(root)
+        for i in range(len(searchWord)):
+            #print(searchWord)
+            output.append((self.recSearch(root.root, searchWord[0:i+1], "",[]))[0:3])
+        return output
     
     def recSearch(self, root: TrieNode, search: str, curStr: str, output: list[str])->list[str]:
         index = 0
+        #print(curStr, " ",search)
         if(len(search) > 0):
             index = ord(search[0])-97
 
@@ -58,9 +49,9 @@ class Solution:
             if(root.endOfWord):
                 output.append(curStr)
 
-            for i in range(len(root.children)):
+            for i in range(26):
                 if(root.children[i] != None):
-                    return self.recSearch(root.children[i], search, curStr + chr(i+97), output)
+                    self.recSearch(root.children[i], search, curStr + chr(i+97), output)
         return output
 #******************************************
 #           Testing Below
@@ -79,13 +70,10 @@ def printTrieNode(root: TrieNode, curr: str):
 def main():
     #print("main")
     test = Solution()
-    #root = Trie()
-    #root.insert("word")
-    #root.insert("worst")
-    #root.insert("wanted")
-    #printTrie(root)
-    products = ["word", "worst", "wanted", "wording"]
-    search = "wor"
+   
+    #products = ["word", "worst", "wanted", "wording"]
+    products = ["mobile","mouse","moneypot","monitor","mousepad"]
+    search = "mouse"
     print(test.suggestedProducts(products, search))
 
 if(__name__ == "__main__"):
