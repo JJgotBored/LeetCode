@@ -4,7 +4,7 @@ class Solution:
         removed = 0
 
         print(intervals)
-        intervals.sort()
+        intervals.sort(key = lambda x: x[1])
         print(intervals)
         interval = intervals[0]
         for i in range(1,n):
