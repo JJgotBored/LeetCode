@@ -3,6 +3,23 @@ class Solution:
         # try implementing a monotonic stack populated by parsing the list in reverse 
         n = len(temperatures)
         out = [0 for i in range(n)]
+        stack = []
+
+        for i in range(n-1, -1, -1):
+            print(i)
+
+            while( len(stack) > 0 and stack[len(stack)-1][0] <= temperatures[i]):
+                    stack.pop()
+
+
+            if(len(stack) == 0):
+                stack.append([temperatures[i], i])
+                out[i] = 0
+            else:
+                out[i] = stack[len(stack)-1][1] -i
+                stack.append([temperatures[i], i])
+                
+
         return out
 
 def main():
